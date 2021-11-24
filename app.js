@@ -14,7 +14,7 @@ const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews'); 
 
-const mongodbURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/productdb'
+const mongodbURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/productdb';
 mongoose.connect('mongodbURL', {
     useNewUrlParser: true,
     useUnifiedTopology: true
