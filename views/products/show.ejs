@@ -1,0 +1,131 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row">
+    <div class="col-6">
+        <% if(currentUser){ %>
+        <h2>Leave a Review</h2>
+        <form action="/products/<%=product._id%>/reviews" method="POST" class="mb-3 validated-form" novalidate>
+            <div class="mb-3">
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                    aria-label="No rating." />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+        </div>
+            <div class="mb-3">
+                <label class="form-label" for="body">Review Text</label>
+                <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <button class="btn btn-success">Submit</button>
+        </form> 
+        <% } %>
+        <script>
+            var a=0;
+            var b=0;
+        </script>
+        <% for(let review of product.reviews) { %>
+            <div class="card mb-3 ">
+                <div class="card-body">
+                    <h4 class="card-title"><%= review.author.username%></h5>
+                    <p class="starability-result" data_rating="<%= review.rating %>">
+                            Rated: <%= review.rating %> stars  
+                    </p>
+                    <p class="card-text">Review: <%= review.body %></p>
+                    <% if( currentUser && (review.author.equals(currentUser._id) || (currentUser._id.equals('618108487f40850236ad7760')))) { %> 
+                    <form action="/products/<%=product._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-sm btn-danger">Delete</button>
+                    </form>
+                <% } %> 
+                </div>
+            </div>
+            <script>
+                var a=a + <%= review.rating %>;
+                var b=b+1;
+                var c=a/b;
+                function round(value, decimals) {
+  return Number(Math.round(value+'e'+decimals)+'e-'+decimals);
+}
+            </script>
+            <% } %>
+    </div>
+    <div class="col-6">
+        <div class="card mb-3">
+            <img src="<%= product.image%>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= product.title%></h5>
+                <p class="card-text"><%= product.description%></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text-muted"><%= product.device%></li>
+                <li class="list-group-item">Rs <%= product.price%></li>
+                <li class="list-group-item"> Average Review :  <div class="stars-outer">
+                    <div class="stars-inner"></div>
+                  </div>
+                  <script src="https://kit.fontawesome.com/e9ebde63fc.js" crossorigin="anonymous"></script>
+            <script>
+               
+
+    // Total Stars
+    const starsTotal = 5;
+
+    // Run getRatings when DOM loads
+    document.addEventListener('DOMContentLoaded', getRatings);
+
+    // Form Elements
+   
+
+    // Init product
+   
+
+    // Product select change
+      // Enable rating control
+      
+    // Rating control change
+  
+
+    // Get ratings
+    function getRatings() {
+     
+        // Get percentage
+        const starPercentage = (c / starsTotal) * 100;
+
+        // Round to nearest 10
+        const starPercentageRounded = `${Math.round(starPercentage / 10) * 10}%`;
+
+        // Set width of stars-inner to percentage
+        document.querySelector(".stars-inner").style.width = starPercentageRounded;
+        console.log(starPercentageRounded);
+
+      
+    }
+                    document.write(round(c, 2));
+                    </script>/5  </li>
+            </ul>
+            <% if( currentUser && product.author.equals(currentUser._id)) {%> 
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/products/<%=product._id%>/edit">Edit</a>
+                <form class="d-inline" action="/products/<%=product._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %> 
+        </div>
+    </div>
+</div>
+
+
+
+   

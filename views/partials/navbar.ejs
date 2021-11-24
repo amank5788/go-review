@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="../css/style1.css">
+<header>
+  <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Product Reviews</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/">Home</a>
+
+          <a class="nav-link" href="/products">Products</a>
+          <ul>
+
+            <li class="category">
+              <div class="nav-link" style="margin-left: -8rem;">Brand categories</div>
+              <div class="sub_menu-1">
+                <ul>
+                  <li class="hover_me1">Laptops
+                    <div class="sub_menu-2">
+                      <ul>
+                        <li><a href="/products/apple" target="_blank">Apple</a></li><br>
+                        <li><a href="/products/dell" target="_blank">Dell</a></li><br>
+                        <li><a href="/products/asus" target="_blank">asus</a></li><br>
+                        <li><a href="/products/HP" target="_blank">Hp</a></li><br>
+                      </ul>
+                    </div>
+                  </li>
+                  <br>
+                  <li class="hover_me2">Mobiles
+                    <div class="sub_menu-3">
+                      <ul>
+                        <li><a href="/products/iphone" target="_blank">Apple</a></li><br>
+                        <li><a href="/products/samsung" target="_blank">Samsung</a></li><br>
+                        <li><a href="/products/xiomi" target="_blank">Xiomi</a></li><br>
+
+                      </ul>
+                    </div>
+                  </li>
+                  <br>
+                  <li class="hover_me3">Watch
+                    <div class="sub_menu-4">
+                      <ul>
+                        <li><a href="/products/iwatch" target="_blank">Apple</a></li><br>
+                        <li><a href="/products/swatch" target="_blank">Samsung</a></li><br>
+                        <li><a href="/products/xwatch" target="_blank">Xiomi</a></li><br>
+
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+
+              </div>
+            </li>
+          </ul>
+
+        </div>
+        </li>
+        <% if(currentUser && (currentUser._id.equals('618108487f40850236ad7760'))){ %>
+          <div class="t">
+            <a  class="nav-link" href="/products/new" style="color: #878b8f!important;">New Product</a>
+          </div>
+          <% } %>
+
+      </div>
+      <div class="navbar-nav ml-auto">
+        <% if(!currentUser) {%>
+          <a class="nav-link" href="/login">Login</a>
+          <a class="nav-link" href="/register">Register</a>
+          <% } else {%>
+            <a class="nav-link" href="/logout">Logout</a>
+            <% } %>
+      </div>
+    </div>
+    </div>
+  </nav>
+</header>

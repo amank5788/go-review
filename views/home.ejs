@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Go review.com</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="photo/LOGO1.svg" type="image">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <img class="go" src="photo/LOGO1.svg" alt="logo" style="    width: 10rem;
+    height: auto;">
+
+      </div>
+      <ul>
+        <li class="category">Brand Categories
+          <div class="sub_menu-1">
+            <ul>
+              <li class="hover_me1"><a href="#">Laptops</a>
+                <div class="sub_menu-2">
+                  <ul>
+                    <li><a href="/products/apple" target="_blank">Apple</a></li><br>
+                    <li><a href="/products/dell" target="_blank">Dell</a></li><br>
+                    <li><a href="/products/asus" target="_blank">asus</a></li><br>
+                    <li><a href="/products/HP" target="_blank">Hp</a></li><br>
+                  </ul>
+                </div>
+              </li>
+              <br>
+              <li class="hover_me2"><a href="#">Mobiles</a>
+                <div class="sub_menu-3">
+                  <ul>
+                    <li><a href="/products/iphone" target="_blank">Apple</a></li><br>
+                    <li><a href="/products/samsung" target="_blank">Samsung</a></li><br>
+                    <li><a href="/products/xiomi" target="_blank">Xiomi</a></li><br>
+
+                  </ul>
+                </div>
+              </li>
+              <br>
+              <li class="hover_me3"><a href="#">Watch</a>
+                <div class="sub_menu-4">
+                  <ul>
+                    <li><a href="/products/iwatch" target="_blank">Apple</a></li><br>
+                    <li><a href="/products/swatch" target="_blank">Samsung</a></li><br>
+                    <li><a href="/products/xwatch" target="_blank">Xiomi</a></li><br>
+
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <% if(!currentUser) {%>
+          <div class="signinbtn">
+            <button id="sign_in" name="sign_in">Sign In</button>
+            <div class="popup_container" id="container">
+              <div class="popupsignin">
+                <button id="close">&times;</button>
+                <div class="login_form">
+                  <form class="validated-form" action="/login" method="post" novalidate>
+                    <div class="mb-3">
+                      <input type="text" class="form-control" id="username" name="username"
+                        placeholder="username or email" style="
+    width: 350px;
+    height: 38px;
+    margin-left: 90px;
+    font-family: 'Manrope';
+    color: #663399;
+    font-weight: bolder;
+      padding: 5px;
+      border: 1px solid #663399;
+
+  " required>
+
+                    </div>
+                    <br><br>
+                    <div class="mb-3">
+                      <input type="password" id="password" class="form-control" name="password" placeholder="password"
+                        style="
+    width: 350px;
+    height: 38px;
+    margin-left: 90px;
+    font-family: 'Manrope';
+    color: #663399;
+    font-weight: bolder;
+    padding: 5px;
+    border: 1px solid #663399;
+  " required>
+
+                    </div>
+                    <br>
+
+
+                    <button type="submit" class="btn btn-success" name="Sign_in">log in</button>
+                  </form>
+                  <br>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="signupbtn">
+            <button id="sign_up" name="sign_up">Sign Up</button>
+            <div class="popup_container1" id="container1">
+              <div class="popupsignup">
+                <button id="close1">&times;</button>
+
+                <div class="signup_form">
+                  Create free account
+                  <form action="/register" method="POST" class="validated-form" novalidate>
+                    <br>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="choose ID" style="
+width: 350px;
+height: 38px;
+margin-left: 90px;
+font-family: 'Manrope';
+color: #663399;
+font-weight: bolder;
+  padding: 5px;
+  border: 1px solid #663399;
+
+" required>
+                    <br><br>
+                    <input class="form-control" type="email" id="email" name="email" placeholder="Primary Email" style="
+width: 350px;
+height: 38px;
+margin-left: 90px;
+font-family: 'Manrope';
+color: #663399;
+font-weight: bolder;
+padding: 5px;
+border: 1px solid #663399;
+
+" required>
+                    <br><br>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="password"
+                      style="
+width: 350px;
+height: 38px;
+margin-left: 90px;
+font-family: 'Manrope';
+color: #663399;
+font-weight: bolder;
+padding: 5px;
+border: 1px solid #663399;
+" required>
+                    <br>
+                    <div class="terms">
+                      <br>
+                      By clicking on 'Sign Up', I agree to the Terms of Services
+                    </div>
+                    <button type="submit" name="sign_up">Sign Up</button>
+                  </form>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <% }else {%>
+
+<div class="out" style="display: flex;" >
+  <a href="/products">
+  <div class="write" style="margin-left: 8rem;">Write a Review</div>
+</a>
+  <div class="signout" style="margin-left: 18rem;">
+    <a href="/logout">
+      <button id="sign_out" name="sign_out">Log out</button>
+    </a>
+  </div>
+</div>
+            <% } %>
+             
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <div class="content">
+      <h1>
+        <p style="font-size: 2rem;">India's Review Platform</p>
+      </h1><br><br>
+      <h4>
+        <p style="font-size: 1rem;">Hundred of unbiased reviews. Trusted by 1000+ Authentic users.</p>
+      </h4>
+    </div>
+    <div class="pic">
+      <img class="svg" src="photo/graphics.svg" alt="graphic">
+    </div>
+  </main>
+  <div class="container">
+    <div class="product">
+      <img src="photo/verified_review_writers.svg" alt="verified_review_writers">
+      <br>
+      <br>Verified Reviews <br>
+    </div>
+    <div class="product">
+      <img src="photo/buying_guide.svg" alt="
+Top Articles Helps you decide">
+      <br>
+      Top Articles <br>Helps you decide</a>
+    </div>
+    <div class="product">
+      <img src="photo/write_share_win_contest.svg" alt="
+Write Share Win Contest Earn cash for reviews">
+      <br>
+      Write Share Win Contest
+    </div>
+  </div>
+  <div class="back">
+    <img src="photo/undraw_details_8k13.svg" alt="" style="padding-top: 8rem;padding-bottom: 5rem;">
+  </div>
+  <div class="over">
+    <div class="front">
+      <img src="photo/undraw_add_information_j2wg2.svg" alt="">
+    </div>
+    <div class="about">
+      <div class="line">
+        Goreview.com is who-what-when-where-why of the consumer world. This is the best place to speak your mind and
+        read what others have to say about almost everything available out there. We help you shop wise
+      </div>
+    </div>
+
+  </div>
+  <div class="we_have">
+    <div class="product">
+      <div class="number">
+        1
+      </div>
+      HUNDRED <br> Products Listed
+    </div>
+    <div class="product">
+      <div class="number">
+        1
+      </div>
+      THOUSAND <br>Shopping Decisions Influenced
+    </div>
+    <div class="product">
+      Go review for Brands
+    </div>
+  </div>
+  <div class="mob">
+    <img src="photo/undraw_detailed_analysis_re_tk6j.svg" alt="">
+  </div>
+  <footer style="
+    font-size: 15px;
+">
+
+    <div class="copyright">
+      <br>
+      copyright &copy; Goreview.com
+    </div>
+  </footer>
+  <script src="js/script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js"
+    integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+    crossorigin="anonymous"></script>
+
+  <script src='/javascripts/validateForms.js'></script>
+
+</body>
+
+</html>
