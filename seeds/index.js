@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Product = require('../models/product')
 
-mongoose.connect('mongodb://localhost:27017/productdb', {
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost:27017/productdb', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
