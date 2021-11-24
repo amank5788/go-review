@@ -18,7 +18,7 @@ const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews'); 
 const MongoDBStore = require("connect-mongo");
 const mongodbURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/productdb';
-mongoose.connect('mongodbURL', {
+mongoose.connect(mongodbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
@@ -48,6 +48,7 @@ store.on("error", function(e) {
     console.log("SESSION STORE ERROR", e)
 })
 const sessionConfig = {
+    secret: 'thisshouldbeabettersecret!',
     store,
     name :'session',
     resave: false,
