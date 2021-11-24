@@ -1,3 +1,6 @@
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
 const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
@@ -13,7 +16,7 @@ const product = require('./models/product');
 const userRoutes = require('./routes/users');
 const productRoutes = require('./routes/products');
 const reviewRoutes = require('./routes/reviews'); 
-
+const MongoDBStore = require("connect-mongo");
 const mongodbURL = process.env.MONGODB_URL || 'mongodb://localhost:27017/productdb';
 mongoose.connect('mongodbURL', {
     useNewUrlParser: true,
@@ -36,9 +39,17 @@ app.set('views', path.join(__dirname, 'views'))
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
+const store = MongoDBStore.create({
+    mongoUrl : mongodbURL,
+    touchAfter : 24*60*60
+});
 
+store.on("error", function(e) {
+    console.log("SESSION STORE ERROR", e)
+})
 const sessionConfig = {
-    secret: 'thisshouldbeabettersecret!',
+    store,
+    name :'session',
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -58,8 +69,7 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.use((req, res, next) => {
-    console.log(req.session)   
+app.use((req, res, next) => {   
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
@@ -116,7 +126,7 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(port, () => {
-    console.log('SERVING ON http://localhost:',{port});
+    console.log(`SERVING ON http://localhost:${port}`);
 });
 
 
