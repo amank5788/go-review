@@ -26,6 +26,7 @@ db.once("open", () => {
 });
 
 const app = express();
+let port = process.env.PORT || 3000;
 
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
@@ -113,9 +114,9 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err })
 })
 
-app.listen(3000, () => {
-    console.log('SERVING ON PORT 3000')
-})
+app.listen(port, () => {
+    console.log('SERVING ON http://localhost:',{port});
+});
 
 
  
